@@ -1,8 +1,7 @@
-from pydantic import BaseModel
-from typing import List, Literal, Optional
-from datetime import datetime
+from pydantic import BaseModel # type: ignore
+from typing import List
 
 
-class TitleOne(BaseModel):
-    message: str
+class Titles(BaseModel):
+    titles: List[str]
    
