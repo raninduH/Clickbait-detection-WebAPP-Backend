@@ -35,6 +35,9 @@ async def process_text(input_data: Titles):
     predicted_labels = supervised_model.predict(padded_sequences)
     
     # process -> 0 = "relevant", 1 = "irrelevant"
-    processed_predicted_labels = ["relevant" if pred==0 else "irrelevant" for pred in predicted_labels ]
+    # processed_predicted_labels = ["relevant" if pred==0 else "irrelevant" for pred in predicted_labels ]
+    # Convert probabilities to binary predictions
+    threshold = 0.5
+    binary_predictions = (predicted_labels >= threshold).astype(int)
     
-    return {"predicted_labels": processed_predicted_labels} 
+    return {"predicted_labels": binary_predictions} 
