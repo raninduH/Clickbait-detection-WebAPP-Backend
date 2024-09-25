@@ -1,10 +1,10 @@
 from fastapi import APIRouter
-from models import Titles
+from pydantic import BaseModel
+from models import Title_with_content_batch ,Titles
 import numpy as np
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import tensorflow as tf
-
 
 router = APIRouter()
 
@@ -41,3 +41,15 @@ async def process_text(input_data: Titles):
     binary_predictions = (predicted_labels >= threshold).astype(int)
     
     return {"predicted_labels": binary_predictions} 
+
+
+import json
+
+from unsupervised.process_data import DataProcessor
+dp = DataProcessor() 
+@router.post("/batch-title-detection")
+async def process_batch_text(input_data: Title_with_content_batch):
+    data=input_data.data
+    data = [d.model_dump() for d in data]
+    processed_data = await dp.process_data(data)
+    return {"data": processed_data}
