@@ -7,7 +7,7 @@ router = APIRouter()
 
 
 # POST route to receive an array of titles
-@router.post("/single-title-detection")
+@router.post("/titles-only-detection")
 async def process_title(input_data: Titles):
     # Extract the titles from the request
     received_titles = input_data.titles
