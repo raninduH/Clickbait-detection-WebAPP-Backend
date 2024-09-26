@@ -12,9 +12,9 @@ router = APIRouter()
 async def process_title(input_data: Titles):
     # Extract the titles from the request
     received_titles = input_data.titles
-    predicted_labels = predcit_titles(received_titles)
+    prediction_results = predcit_titles(received_titles)
     
-    return {"predicted_labels": predicted_labels} 
+    return prediction_results
 
 
 from unsupervised.process_data import DataProcessor
