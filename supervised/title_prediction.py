@@ -29,10 +29,11 @@ def predcit_titles(received_titles):
 
     # Convert probabilities to binary predictions
     threshold = 0.6
-    binary_predictions = (predicted_labels >= threshold).astype(int)
+    binary_predictions = (predicted_labels >= threshold).astype(bool)
     binary_predictions = binary_predictions.tolist()
     
     # tranforming into a flat array
     flat_predictions = [pred[0] for pred in binary_predictions]
-    
-    return flat_predictions
+
+    result = [{"title": received_titles[i], "clickbait_flag": flat_predictions[i]} for i in range(len(received_titles))]
+    return result
