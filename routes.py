@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, UploadFile, File
 import json  # Ensure you are using the standard library's json module
 from models import Title_with_content_batch ,Titles
-from supervised.title_prediction import predcit_titles
+from supervised.title_prediction import predict_titles
 
 
 router = APIRouter()
@@ -12,7 +12,7 @@ router = APIRouter()
 async def process_title(input_data: Titles):
     # Extract the titles from the request
     received_titles = input_data.titles
-    prediction_results = predcit_titles(received_titles)
+    prediction_results = predict_titles(received_titles)
     
     return prediction_results
 
