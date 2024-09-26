@@ -6,7 +6,7 @@ import tensorflow as tf
 # Load the supervised model (either .h5 or .keras)
 supervised_model = tf.keras.models.load_model('supervised/supervised_clickbait_detection_model_V2.h5')
 
-def predcit_titles(received_titles):   
+def predict_titles(received_titles):   
       
     max_len = 50  # Maximum number of words in a title (padding/truncating length)
 
