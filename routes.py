@@ -14,7 +14,7 @@ async def process_title(input_data: Titles):
     received_titles = input_data.titles
     prediction_results = predict_titles(received_titles)
     
-    return prediction_results
+    return {"data": prediction_results}
 
 
 from unsupervised.process_data import DataProcessor
