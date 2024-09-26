@@ -32,4 +32,7 @@ def predcit_titles(received_titles):
     binary_predictions = (predicted_labels >= threshold).astype(int)
     binary_predictions = binary_predictions.tolist()
     
-    return binary_predictions
+    # tranforming into a flat array
+    flat_predictions = [pred[0] for pred in binary_predictions]
+    
+    return flat_predictions
